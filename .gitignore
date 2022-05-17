@@ -2,3 +2,4 @@ esbocos
 manifestos
 *.pyc
 .gitignore
+outputs/
