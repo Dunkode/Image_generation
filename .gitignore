@@ -3,3 +3,4 @@ manifestos
 *.pyc
 .gitignore
 outputs/
+data/
