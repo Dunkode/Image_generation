@@ -3,4 +3,6 @@ manifestos
 *.pyc
 .gitignore
 outputs/
+inputs/
 data/
+__pycache__

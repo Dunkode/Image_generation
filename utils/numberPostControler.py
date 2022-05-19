@@ -1,33 +1,14 @@
-from os.path import join, exists
-from os import mkdir
+from os.path import join
 import string
+from utils.fileManagement import readContentFromFile, verifyFile, writeDataInFile
 
 DIR = "data"
 FILE = "num_post.txt"
-DIR_FILE = join(DIR, FILE)
-
-def verifyFile():
-    if exists(DIR_FILE):
-        return DIR_FILE
-    else:
-        mkdir("data")
-        open(DIR_FILE, "w+")
-        setNumberFromFile(0)
-        return DIR_FILE
-
-
-def getNumberFromFile():
-    with open(verifyFile(), "r") as fileNumber:
-        data = fileNumber.read()
-        return data
-
-def setNumberFromFile(newNumber):
-    with open(verifyFile(), "w") as fileNumber:
-        fileNumber.write(str(newNumber + 1))
 
 def attNumberFromFile():
-    oldNumber = int(getNumberFromFile())
-    setNumberFromFile(oldNumber)
+    file_number = verifyFile(DIR, FILE, 0)
+    oldNumber = int(readContentFromFile(file_number))
+    writeDataInFile(file_number, oldNumber + 1)
     return oldNumber
 
 def generateNameOfFile(NUMBER, index):

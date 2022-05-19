@@ -1,15 +1,16 @@
 import math
 
-MAX_LINES_FOR_IMAGE = 11
-
 def brokeText(text, max_char):
+    separeted_texts = []
+
     if len(text) > max_char:
         qtd_cuts = calculeLineBrokes(text, max_char)        
         separeted_texts = getTexBrokenInLines(text, max_char, qtd_cuts).split("\n")      
         return separeted_texts
 
     else:
-        return separeted_texts.append(text)
+        separeted_texts.append(text)
+        return separeted_texts
 
 def calculeLineBrokes(text, max_char):
     return math.ceil(len(text)/max_char)
