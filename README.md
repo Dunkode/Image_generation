@@ -6,7 +6,7 @@ Neste repositório se encontra um código capaz de ler textos e escrevê-los em 
 O texto escrito será quebrado em linhas, e essas linhas serão desenhadas numa série de imagens, caso necessário.
 
 ## Qual é o formato dessas imagens?
-Essas imagens serão criadas num formato de postagem para Redes Sociais, bem no estilo de frases de auto-ajuda. É inspirado nos posts desses perfis:  [Perfil 1](https://www.instagram.com/segredosdauniversidade2.0/) (talvez não seja um exemplo muito bom, mas o que vale é a intenção 😄)
+Essas imagens serão criadas num formato de postagem para Redes Sociais, bem no estilo de frases de auto-ajuda. É inspirado nos posts desses perfis:  [Perfil 1](https://www.instagram.com/segredosdauniversidade2.0/) (talvez não seja um exemplo muito bom, mas o que vale é a intenção 😄).
 
 Também será desenhado um número em cada postagem, com o intuíto de identificá-la, sendo que esse número será gerado automaticamente, partindo do zero.
 
