@@ -1,14 +1,11 @@
-from PIL import ImageColor
 from drawers.imageTextDrawer import montTextOnImages
 from utils.textReader import readTextsFromFile
-from utils.numberPostControler import attNumberFromFile, generateNameOfFile
+from utils.numberPostControler import attNumberFromFile
 
 TAMANHO = (500, 500)
-COR = ImageColor.getrgb('#d16711')
 NUMERO_POST = attNumberFromFile()
 texts = readTextsFromFile()
 
-
 if texts:
     for text in texts:
-        pillow_img = montTextOnImages(TAMANHO, COR, NUMERO_POST, text)
+        pillow_img = montTextOnImages(TAMANHO, NUMERO_POST, text)

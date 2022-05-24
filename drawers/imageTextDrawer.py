@@ -1,6 +1,6 @@
 import math
 import os
-from PIL import Image, ImageFont, ImageDraw
+from PIL import Image, ImageFont, ImageDraw, ImageColor
 from utils import textProcessor as tp
 from drawers import imageTextDrawer as itd
 from utils.numberPostControler import generateNameOfFile
@@ -8,11 +8,20 @@ from utils.numberPostControler import generateNameOfFile
 #Pasta onde serão salvas as imagens
 OUTPUT_DIR = './outputs/'
 
+#Fonte usada para gerar as imagens
+FONT_DIR = './fonts/TIMESI.TTF'
+
 #Quantidade máxima de caracteres por linha
 QTD_MAX_CHAR = 39
 
 #Quantidade máxima de linhas por imagem
 MAX_LINES_FOR_IMAGE = 11
+
+#Cor de fundo da imagem
+IMAGE_BACKGROUND_COLOR = ImageColor.getrgb('#d16711')
+
+#Cor da fonte usada
+COLOR_FONT = '#000000'
 
 def drawTextOnImage(pillow_img, text_write):
     """
@@ -24,14 +33,14 @@ def drawTextOnImage(pillow_img, text_write):
     width = 10
     height = calculateHeight(pillow_img.size[1], text_write)
     draw = ImageDraw.Draw(pillow_img)
-    font  = ImageFont.truetype('./fonts/TIMESI.TTF', 30)
+    font  = ImageFont.truetype(FONT_DIR, 30)
 
     
     draw.text((width, 
     height), 
           text_write, 
           font=font, 
-          fill='#000000')
+          fill=COLOR_FONT)
 
 def drawNumberOfImage(pillow_img, number):
     """
@@ -49,7 +58,7 @@ def drawNumberOfImage(pillow_img, number):
     draw.text((width - len(str(number)) * 2, (height//2)), 
                 f'~{number}', 
                 font=font, 
-                fill='#000000')
+                fill=COLOR_FONT)
 
 def calculateHeight(height, text):
     """
@@ -71,7 +80,7 @@ def calculateHeight(height, text):
         return height
 
 
-def montTextOnImages(TAMANHO, COR, NUMERO_POST, text):
+def montTextOnImages(TAMANHO, NUMERO_POST, text):
     """
     Função utilizada para gerar a quantidade necessária de imagens.
 
@@ -89,7 +98,7 @@ def montTextOnImages(TAMANHO, COR, NUMERO_POST, text):
 
     #Se tem apenas uma linha a ser desenhada na imagem
     if qtd_lines <= 1:
-        pillow_img = Image.new('RGB', TAMANHO, color=COR)
+        pillow_img = Image.new('RGB', TAMANHO, color=IMAGE_BACKGROUND_COLOR)
 
         itd.drawTextOnImage(pillow_img, text_write_list[0])
         itd.drawNumberOfImage(pillow_img, NUMERO_POST)
@@ -104,7 +113,7 @@ def montTextOnImages(TAMANHO, COR, NUMERO_POST, text):
         for line in text_write_list:
             final_text += line + "\n"
             
-        pillow_img = Image.new('RGB', TAMANHO, color=COR)
+        pillow_img = Image.new('RGB', TAMANHO, color=IMAGE_BACKGROUND_COLOR)
 
         itd.drawTextOnImage(pillow_img, final_text)
         itd.drawNumberOfImage(pillow_img, NUMERO_POST)
@@ -120,7 +129,7 @@ def montTextOnImages(TAMANHO, COR, NUMERO_POST, text):
         for i in range(0, loops):
             generatedName = generateNameOfFile(NUMERO_POST, i)
             final_text = ""
-            pillow_img = Image.new('RGB', TAMANHO, color=COR)
+            pillow_img = Image.new('RGB', TAMANHO, color=IMAGE_BACKGROUND_COLOR)
             NOME_ARQUIVO = (OUTPUT_DIR + f'{generatedName}.png', 'PNG')
 
             for line in text_write_list[11*i : 11*i+11]:
