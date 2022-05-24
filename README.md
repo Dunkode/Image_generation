@@ -22,7 +22,7 @@ O algoritmo foi pensado para que cada arquivo de texto gerassem uma postagem, qu
  4. Após isso, basta rodar o arquivo `imgGenerate.py` novamente, que os resultados ficarão disponíveis no diretório `outputs/`!
 
 ## Especificações
- - Para rodar o código, é necessário ter instalado préviamente a biblioteca [Pillow](https://pillow.readthedocs.io/en/latest/installation.html)
+ - Para rodar o código, é necessário ter instalado préviamente a biblioteca [Pillow](https://pillow.readthedocs.io/en/latest/installation.html);
  - A imagem tem um tamanho fixo de **500X500**;
  - A fonte usada nas imagens podem ser alteradas, colocando a fonte desejada no diretório `fonts/`. Após isso, você altera a variável `FONT_DIR` no arquivo `drawers/imageTextDrawer.py`, colocando o nome do arquivo da fonte que você inseriu anteriormente após o `./fonts/` que já está na variável;
  - **Obs:** O algorítmo foi projetado pensando no uso da fonte que já existe hoje, então outras fontes podem não funcionar como esperado;
