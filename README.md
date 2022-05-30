@@ -18,7 +18,7 @@ O algoritmo foi pensado para que cada arquivo de texto gerassem uma postagem, qu
 
  1. Clone este repositório para seu ambiente;
  2. Rode o arquivo `imgGenerate.py` uma primeira vez, para que os diretórios necessários sejam criados automaticamente;
- 3. Feito isso, insira um  **arquivo na extensão .txt** no diretório `inputs/`;
+ 3. Feito isso, insira um  **arquivo na extensão .txt** no diretório `inputs/`, com o texto que você quer que seja escrito na imagem;
  4. Após isso, basta rodar o arquivo `imgGenerate.py` novamente, que os resultados ficarão disponíveis no diretório `outputs/`!
 
 ## Especificações
