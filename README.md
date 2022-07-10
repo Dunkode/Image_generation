@@ -24,7 +24,7 @@ O algoritmo foi pensado para que cada arquivo de texto gerassem uma postagem, qu
 ## Especificações
  - Para rodar o código, é necessário ter instalado préviamente a biblioteca [Pillow](https://pillow.readthedocs.io/en/latest/installation.html);
  - A imagem tem um tamanho fixo de **500X500**;
- - A fonte usada nas imagens podem ser alteradas, colocando a fonte desejada no diretório `fonts/`. Após isso, você altera a variável `FONT_DIR` no arquivo `drawers/imageTextDrawer.py`, colocando o nome do arquivo da fonte que você inseriu anteriormente após o `./fonts/` que já está na variável;
+ - A fonte usada nas imagens pode ser alterada, colocando a fonte desejada no diretório `fonts/`. Após isso, você deve alterar a variável `FONT_DIR` no arquivo `drawers/imageTextDrawer.py`, colocando o nome do arquivo da fonte que você inseriu anteriormente após o `./fonts/` que já está na variável;
  - **Obs:** O algorítmo foi projetado pensando no uso da fonte que já existe hoje, então outras fontes podem não funcionar como esperado;
  - A cor de fundo das imagens pode ser alterado, alterando o conteúdo da variável `IMAGE_BACKGROUND_COLOR` que se enconta no arquivo `drawers/imageTextDrawer.py`;
  - A cor das fonte usada nas imagens também pode ser alterada, colocando o valor em hexadecimal da cor desejada na variável `COLOR_FONT`, que se encontra no arquivo `drawers/imageTextDrawer.py`; 
