@@ -3,7 +3,7 @@ import os
 from PIL import Image, ImageFont, ImageDraw, ImageColor
 from utils import textProcessor as tp
 from drawers import imageTextDrawer as itd
-from utils.numberPostControler import generateNameOfFile
+from utils.numberPostControler import attNumberFromFile, generateNameOfFile
 
 #Pasta onde serão salvas as imagens
 OUTPUT_DIR = './outputs/'
@@ -80,7 +80,7 @@ def calculateHeight(height, text):
         return height
 
 
-def montTextOnImages(TAMANHO, NUMERO_POST, text):
+def montTextOnImages(TAMANHO, text):
     """
     Função utilizada para gerar a quantidade necessária de imagens.
 
@@ -89,6 +89,7 @@ def montTextOnImages(TAMANHO, NUMERO_POST, text):
     NUMERO_POST= numeração da imagem
     text= texto a ser escrito
     """
+    NUMERO_POST = attNumberFromFile()
     NOME_ARQUIVO = (OUTPUT_DIR + f'{NUMERO_POST}.png', 'PNG')
     text_write_list = tp.brokeText(text, QTD_MAX_CHAR)
     qtd_lines = len(text_write_list)
