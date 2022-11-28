@@ -1,21 +1,22 @@
 from os.path import join
 import string
-from utils.fileManagement import readContentFromFile, verifyFile, writeDataInFile
+import src.utils.fileManagement as fm
+import src.utils.logUtil as log
 
 #Diretório onde ficarão alguns dados para o programa funcionar
-DIR = "data"
+DIR = fm.PATH_DATA
 
 #Arquivo que conterá o número da postagem a ser escrita na imagem
-FILE = "num_post.txt"
+FILE = join(fm.PATH_DATA, "num_post.txt")
 
 def attNumberFromFile():
     '''
     Função capaz de ler o número do arquivo num_post.txt
     e atualizá-lo em mais um.
     '''
-    file_number = verifyFile(DIR, FILE, 0)
-    oldNumber = int(readContentFromFile(file_number))
-    writeDataInFile(file_number, oldNumber + 1)
+    file_number = fm.verifyFile(DIR, FILE, 0)
+    oldNumber = int(fm.readContentFromFile(file_number))
+    fm.writeDataInFile(file_number, oldNumber + 1)
     return oldNumber
 
 def generateNameOfFile(NUMBER, index):

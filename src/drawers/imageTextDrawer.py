@@ -1,15 +1,18 @@
 import math
 import os
+from os.path import join, exists
 from PIL import Image, ImageFont, ImageDraw, ImageColor
-from utils import textProcessor as tp
-from drawers import imageTextDrawer as itd
-from utils.numberPostControler import attNumberFromFile, generateNameOfFile
+from src.utils import textProcessor as tp
+from src.drawers import imageTextDrawer as itd
+from src.utils.numberPostControler import attNumberFromFile, generateNameOfFile
+from src.utils.fileManagement import PATH_OUTPUT, PATH_FONT
+import src.utils.logUtil as log
 
 #Pasta onde serão salvas as imagens
-OUTPUT_DIR = './outputs/'
+OUTPUT_DIR = PATH_OUTPUT
 
 #Fonte usada para gerar as imagens
-FONT_DIR = './fonts/TIMESI.TTF'
+FONT_DIR = join(PATH_FONT, 'TIMESI.TTF')
 
 #Quantidade máxima de caracteres por linha
 QTD_MAX_CHAR = 39
@@ -33,11 +36,11 @@ def drawTextOnImage(pillow_img, text_write):
     width = 10
     height = calculateHeight(pillow_img.size[1], text_write)
     draw = ImageDraw.Draw(pillow_img)
+    
     font  = ImageFont.truetype(FONT_DIR, 30)
 
     
-    draw.text((width, 
-    height), 
+    draw.text((width, height), 
           text_write, 
           font=font, 
           fill=COLOR_FONT)
@@ -89,13 +92,15 @@ def montTextOnImages(TAMANHO, text):
     NUMERO_POST= numeração da imagem
     text= texto a ser escrito
     """
+
+    if not exists(FONT_DIR):
+        raise Exception("A fonte a ser usada não foi localizada no diretório.")
+    
     NUMERO_POST = attNumberFromFile()
-    NOME_ARQUIVO = (OUTPUT_DIR + f'{NUMERO_POST}.png', 'PNG')
+    NOME_ARQUIVO = (join(OUTPUT_DIR, f'{NUMERO_POST}.png'), 'PNG')
     text_write_list = tp.brokeText(text, QTD_MAX_CHAR)
     qtd_lines = len(text_write_list)
 
-    if not os.path.exists(OUTPUT_DIR):
-        os.mkdir(OUTPUT_DIR)
 
     #Se tem apenas uma linha a ser desenhada na imagem
     if qtd_lines <= 1:
@@ -106,6 +111,8 @@ def montTextOnImages(TAMANHO, text):
 
         #Salva a imagem criada no caminho por parâmetro
         pillow_img.save(*NOME_ARQUIVO)
+        log.info(f"Imagem {NOME_ARQUIVO[0]} gerada.")
+        
         pillow_img.show()
 
     #Se tem mais de uma e menos que o máximo de linhas por imagem
@@ -121,6 +128,8 @@ def montTextOnImages(TAMANHO, text):
 
         #Salva a imagem criada no caminho por parâmetro
         pillow_img.save(*NOME_ARQUIVO)
+        log.info(f"Imagem {NOME_ARQUIVO[0]} gerada.")
+
         pillow_img.show()
     
     #Se tem mais do máximo de linhas por imagem
@@ -131,12 +140,14 @@ def montTextOnImages(TAMANHO, text):
             generatedName = generateNameOfFile(NUMERO_POST, i)
             final_text = ""
             pillow_img = Image.new('RGB', TAMANHO, color=IMAGE_BACKGROUND_COLOR)
-            NOME_ARQUIVO = (OUTPUT_DIR + f'{generatedName}.png', 'PNG')
+            NOME_ARQUIVO = (join(OUTPUT_DIR, f'{generatedName}.png'), 'PNG')
 
-            for line in text_write_list[11*i : 11*i+11]:
-                final_text += line + "\n"          
+            for line in text_write_list[(MAX_LINES_FOR_IMAGE * i) : ((MAX_LINES_FOR_IMAGE * i) + MAX_LINES_FOR_IMAGE)]:
+                final_text += line + "\n"
             
             itd.drawTextOnImage(pillow_img, final_text)
-            itd.drawNumberOfImage(pillow_img, generatedName)            
+            itd.drawNumberOfImage(pillow_img, generatedName)
             pillow_img.save(*NOME_ARQUIVO)
+            log.info(f"Imagem {generatedName} gerada.")
+            
             # pillow_img.show()

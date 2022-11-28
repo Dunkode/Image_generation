@@ -1,5 +1,11 @@
 from os.path import join, exists
-from os import mkdir
+from os import mkdir, getcwd
+import src.utils.logUtil as log
+
+PATH_DATA = join(getcwd(), 'data')
+PATH_OUTPUT = join(getcwd(), 'outputs')
+PATH_INPUT = join(getcwd(), 'inputs')
+PATH_FONT = join(getcwd(), 'fonts')
 
 def verifyFile(dir_name, file_name=None, initial_value = ""):
     '''
@@ -19,10 +25,12 @@ def verifyFile(dir_name, file_name=None, initial_value = ""):
 
     if not exists(dir_name):
         mkdir(dir_name)
+        log.info(f"Diretório {dir_name} criado.")
     
     if file_name:
         if not exists(directory):
-            writeDataInFile(directory, initial_value)      
+            writeDataInFile(directory, initial_value)
+            log.info(f"Arquivo {directory} criado com o valor inicial {initial_value}.")      
 
     return directory
 
@@ -45,4 +53,28 @@ def readContentFromFile(file_directory):
     with open(file_directory, "r", encoding='utf-8') as opened_file:
         return opened_file.read()
     
-        
+
+def verifySystemPaths():
+    '''
+    Função para verificar se as pastas necessárias para 
+    rodar o sistema existem.
+    Se elas não existirem, serão criadas.
+    '''
+    
+    if not exists(PATH_DATA):
+        mkdir(PATH_DATA)
+        log.info(f"Diretório {PATH_DATA} criado.")
+    
+    if not exists(PATH_OUTPUT):
+        mkdir(PATH_OUTPUT)
+        log.info(f"Diretório {PATH_OUTPUT} criado.")
+    
+    if not exists(PATH_INPUT):
+        mkdir(PATH_INPUT)
+        log.info(f"Diretório {PATH_INPUT} criado.")
+
+    if not exists(PATH_FONT):
+        mkdir(PATH_FONT)
+        log.info(f"Diretório {PATH_FONT} criado.")
+
+    log.info("Diretórios base verificados com suceso.")
