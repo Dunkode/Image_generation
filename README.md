@@ -17,14 +17,14 @@ O algoritmo foi pensado para que cada arquivo de texto gerassem uma postagem, qu
 ## Uso do código
 
  1. Clone este repositório para seu ambiente;
- 2. Rode o arquivo `imgGenerate.py` uma primeira vez, para que os diretórios necessários sejam criados automaticamente;
+ 2. Rode o arquivo `main.py` uma primeira vez, para que os diretórios necessários sejam criados automaticamente;
  3. Feito isso, insira um  **arquivo na extensão .txt** no diretório `inputs/`, com o texto que você quer que seja escrito na imagem;
  4. Após isso, basta rodar o arquivo `imgGenerate.py` novamente, que os resultados ficarão disponíveis no diretório `outputs/`!
 
 ## Especificações
  - Para rodar o código, é necessário ter instalado préviamente a biblioteca [Pillow](https://pillow.readthedocs.io/en/latest/installation.html);
  - A imagem tem um tamanho fixo de **500X500**;
- - A fonte usada nas imagens pode ser alterada, colocando a fonte desejada no diretório `fonts/`. Após isso, você deve alterar a variável `FONT_DIR` no arquivo `drawers/imageTextDrawer.py`, colocando o nome do arquivo da fonte que você inseriu anteriormente após o `./fonts/` que já está na variável;
+ - A fonte usada nas imagens pode ser alterada, colocando a fonte desejada no diretório `fonts/`. Após isso, você deve alterar a variável `FONT_DIR` no arquivo `drawers/imageTextDrawer.py`, colocando o nome do arquivo da fonte que você inseriu anteriormente nela;
  - **Obs:** O algorítmo foi projetado pensando no uso da fonte que já existe hoje, então outras fontes podem não funcionar como esperado;
  - A cor de fundo das imagens pode ser alterado, alterando o conteúdo da variável `IMAGE_BACKGROUND_COLOR` que se enconta no arquivo `drawers/imageTextDrawer.py`;
  - A cor das fonte usada nas imagens também pode ser alterada, colocando o valor em hexadecimal da cor desejada na variável `COLOR_FONT`, que se encontra no arquivo `drawers/imageTextDrawer.py`; 
