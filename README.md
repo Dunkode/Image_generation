@@ -19,7 +19,7 @@ O algoritmo foi pensado para que cada arquivo de texto gerassem uma postagem, qu
  1. Clone este repositório para seu ambiente;
  2. Rode o arquivo `main.py` uma primeira vez, para que os diretórios necessários sejam criados automaticamente;
  3. Feito isso, insira um  **arquivo na extensão .txt** no diretório `inputs/`, com o texto que você quer que seja escrito na imagem;
- 4. Após isso, basta rodar o arquivo `imgGenerate.py` novamente, que os resultados ficarão disponíveis no diretório `outputs/`!
+ 4. Após isso, basta rodar o arquivo `main.py` novamente, que os resultados ficarão disponíveis no diretório `outputs/`!
 
 ## Especificações
  - Para rodar o código, é necessário ter instalado préviamente a biblioteca [Pillow](https://pillow.readthedocs.io/en/latest/installation.html);
