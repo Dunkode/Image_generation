@@ -3,7 +3,7 @@ from src.utils.textReader import readTextsFromFile
 from src.utils.fileManagement import verifySystemPaths
 import src.utils.logUtil as log
 
-TAMANHO = (500, 500)
+TAMANHO = (1080, 1080)
 verifySystemPaths()
 texts = readTextsFromFile()
 

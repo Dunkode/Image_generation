@@ -15,10 +15,10 @@ OUTPUT_DIR = PATH_OUTPUT
 FONT_DIR = join(PATH_FONT, 'TIMESI.TTF')
 
 #Quantidade máxima de caracteres por linha
-QTD_MAX_CHAR = 39
+QTD_MAX_CHAR = 41
 
 #Quantidade máxima de linhas por imagem
-MAX_LINES_FOR_IMAGE = 11
+MAX_LINES_FOR_IMAGE = 13
 
 #Cor de fundo da imagem
 IMAGE_BACKGROUND_COLOR = ImageColor.getrgb('#d16711')
@@ -33,11 +33,11 @@ def drawTextOnImage(pillow_img, text_write):
     pillow_img= Instância de PIL.Image
     text_write= Texto a ser escrito na instância acima
     """
-    width = 10
+    width = 20
     height = calculateHeight(pillow_img.size[1], text_write)
     draw = ImageDraw.Draw(pillow_img)
     
-    font  = ImageFont.truetype(FONT_DIR, 30)
+    font  = ImageFont.truetype(FONT_DIR, 60)
 
     
     draw.text((width, height), 
@@ -52,10 +52,10 @@ def drawNumberOfImage(pillow_img, number):
     pillow_img= Instância de PIL.Image
     number= numeração a ser escrita na instância acima
     """
-    width = 397
-    height = 77
+    width = 788
+    height = 300
     draw = ImageDraw.Draw(pillow_img)
-    font  = ImageFont.truetype('./fonts/TIMESBI.TTF', 32)
+    font  = ImageFont.truetype('./fonts/TIMESBI.TTF', 62)
 
     
     draw.text((width - len(str(number)) * 2, (height//2)), 
@@ -76,7 +76,7 @@ def calculateHeight(height, text):
     if (qtd_lines > 8):
         for i in range(0, qtd_lines - 8):
             if i < 3:
-                height -= 32
+                height -= 77
         return height
 
     else:
@@ -97,7 +97,7 @@ def montTextOnImages(TAMANHO, text):
         raise Exception("A fonte a ser usada não foi localizada no diretório.")
     
     NUMERO_POST = attNumberFromFile()
-    NOME_ARQUIVO = (join(OUTPUT_DIR, f'{NUMERO_POST}.png'), 'PNG')
+    NOME_ARQUIVO = (join(OUTPUT_DIR, f'{NUMERO_POST}.jpeg'), 'jpeg')
     text_write_list = tp.brokeText(text, QTD_MAX_CHAR)
     qtd_lines = len(text_write_list)
 
@@ -140,14 +140,14 @@ def montTextOnImages(TAMANHO, text):
             generatedName = generateNameOfFile(NUMERO_POST, i)
             final_text = ""
             pillow_img = Image.new('RGB', TAMANHO, color=IMAGE_BACKGROUND_COLOR)
-            NOME_ARQUIVO = (join(OUTPUT_DIR, f'{generatedName}.png'), 'PNG')
+            NOME_ARQUIVO = (join(OUTPUT_DIR, f'{generatedName}.jpeg'), 'jpeg')
 
             for line in text_write_list[(MAX_LINES_FOR_IMAGE * i) : ((MAX_LINES_FOR_IMAGE * i) + MAX_LINES_FOR_IMAGE)]:
                 final_text += line + "\n"
             
             itd.drawTextOnImage(pillow_img, final_text)
             itd.drawNumberOfImage(pillow_img, generatedName)
-            pillow_img.save(*NOME_ARQUIVO)
+            pillow_img.save(*NOME_ARQUIVO, keep=100)
             log.info(f"Imagem {generatedName} gerada.")
             
             # pillow_img.show()

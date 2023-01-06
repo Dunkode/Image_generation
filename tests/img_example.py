@@ -1,4 +1,4 @@
-from PIL import Image, ImageColor
+from PIL import Image
 
 WIDTH, HEIGHT = 1024, 512
 FILENAME = ("teste_pillow.png", "PNG")

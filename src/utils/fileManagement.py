@@ -17,7 +17,9 @@ def verifyFile(dir_name, file_name=None, initial_value = ""):
     esse arquivo.
 
     dir_name = caminho de diretório a se analisar;
+    
     file_name = arquivo que pode ser criado no diretório informado;
+    
     initial_value = um valor inicial pré-definido que pode ser
     inserido no arquivo.
     '''
