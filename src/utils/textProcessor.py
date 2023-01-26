@@ -34,7 +34,8 @@ def calculeLineBrokes(text, max_char):
     text = texto base;
     max_char = quantidade máxima de caracteres.
     '''
-    return math.ceil(len(text)/max_char)
+    forced_brokes = text.count('\n')
+    return math.ceil((len(text)/max_char) + forced_brokes)
     
 
 def getTexBrokenInLines(text, max_char, qtd_cuts):
@@ -46,7 +47,8 @@ def getTexBrokenInLines(text, max_char, qtd_cuts):
     '''
     final_string = ''
     qtd_char_rem = 0
-    for i in range(0, qtd_cuts + 1):
+    len_text_no_linebroke = len(text.strip('\n'))
+    for i in range(0, (qtd_cuts + 1)):
         pos_no_linebroke = len(final_string.replace('\n', ''))
 
         str_aux = text[0 if len(final_string) == 0 
@@ -56,14 +58,20 @@ def getTexBrokenInLines(text, max_char, qtd_cuts):
 
         if str_aux != '':
             while True:
-                if (len(final_string) + len(str_aux)) < len(text):
+                if (pos_no_linebroke + len(str_aux.strip('\n'))) < len_text_no_linebroke:
+                    if '\n' in str_aux:
+                        cuted_string = str_aux.split('\n')
+                        if len(cuted_string) > 1:
+                            final_string += cuted_string[0] + '\n'
+                            qtd_char_rem += 1
+                            break
                     while True:
                         if str_aux[0] in (' ', ','):
                             str_aux = str_aux[1:]
                             qtd_char_rem += 1
                         break 
 
-                    if str_aux[-1] in (' ', '.', ',', '!'):
+                    if str_aux[-1] in (' ', '.', ',', '!', '?'):
                         final_string += str_aux[: len(str_aux)] + '\n'
                         break
                     else:

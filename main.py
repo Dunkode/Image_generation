@@ -1,5 +1,5 @@
 from src.drawers.imageTextDrawer import montTextOnImages
-from src.utils.textReader import readTextsFromFile
+from src.utils.textReader import readTextsFromFile, renameUsedFile
 from src.utils.fileManagement import verifySystemPaths
 import src.utils.logUtil as log
 
@@ -10,6 +10,7 @@ texts = readTextsFromFile()
 if texts:
     for text in texts:
         try:
-            montTextOnImages(TAMANHO, text)
+            montTextOnImages(TAMANHO, text['text'])
+            renameUsedFile(text['file'])
         except Exception as error:
             log.erro(error.args)

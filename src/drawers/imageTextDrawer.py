@@ -113,7 +113,7 @@ def montTextOnImages(TAMANHO, text):
         pillow_img.save(*NOME_ARQUIVO)
         log.info(f"Imagem {NOME_ARQUIVO[0]} gerada.")
         
-        pillow_img.show()
+        # pillow_img.show()
 
     #Se tem mais de uma e menos que o máximo de linhas por imagem
     elif qtd_lines > 1 and qtd_lines <= MAX_LINES_FOR_IMAGE:
@@ -130,7 +130,7 @@ def montTextOnImages(TAMANHO, text):
         pillow_img.save(*NOME_ARQUIVO)
         log.info(f"Imagem {NOME_ARQUIVO[0]} gerada.")
 
-        pillow_img.show()
+        # pillow_img.show()
     
     #Se tem mais do máximo de linhas por imagem
     #gerando uma imagem a cada MAX_LINES_FOR_IMAGE linhas de texto

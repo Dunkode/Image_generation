@@ -10,12 +10,22 @@ def readTextsFromFile():
     input_file = fm.verifyFile(INPUT_DIR)
     input_search_pattern = join(input_file, "*.txt")
 
-    list_texts = []
+    text = []
 
     for text_file in glob(input_search_pattern):
         if "_used" not in text_file:
-            list_texts.append(fm.readContentFromFile(text_file))
-            rename(text_file, text_file + "_used")
+            txtEntry = {
+                'file': '',
+                'text': ''
+            }
+            
+            txtEntry['file'] = text_file
+            txtEntry['text'] = fm.readContentFromFile(text_file)
+            text.append(txtEntry)
+            
             log.info(f"Texto do arquivo {text_file} carregado.")
 
-    return list_texts
+    return text
+
+def renameUsedFile(file):
+    rename(file, file + "_used")
