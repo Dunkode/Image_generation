@@ -15,7 +15,7 @@ OUTPUT_DIR = PATH_OUTPUT
 FONT_DIR = join(PATH_FONT, 'TIMESI.TTF')
 
 #Quantidade máxima de caracteres por linha
-QTD_MAX_CHAR = 41
+QTD_MAX_CHAR = 40
 
 #Quantidade máxima de linhas por imagem
 MAX_LINES_FOR_IMAGE = 13
@@ -117,9 +117,9 @@ def montTextOnImages(TAMANHO, text):
 
     #Se tem mais de uma e menos que o máximo de linhas por imagem
     elif qtd_lines > 1 and qtd_lines <= MAX_LINES_FOR_IMAGE:
-        final_text = ""
-        for line in text_write_list:
-            final_text += line + "\n"
+        final_text = "\n".join(text_write_list)
+        # for line in text_write_list:
+        #     final_text += line + "\n"
             
         pillow_img = Image.new('RGB', TAMANHO, color=IMAGE_BACKGROUND_COLOR)
 
@@ -130,24 +130,23 @@ def montTextOnImages(TAMANHO, text):
         pillow_img.save(*NOME_ARQUIVO)
         log.info(f"Imagem {NOME_ARQUIVO[0]} gerada.")
 
-        # pillow_img.show()
-    
     #Se tem mais do máximo de linhas por imagem
     #gerando uma imagem a cada MAX_LINES_FOR_IMAGE linhas de texto
     else:
         loops = math.ceil(qtd_lines/MAX_LINES_FOR_IMAGE)
+
         for i in range(0, loops):
             generatedName = generateNameOfFile(NUMERO_POST, i)
-            final_text = ""
             pillow_img = Image.new('RGB', TAMANHO, color=IMAGE_BACKGROUND_COLOR)
             NOME_ARQUIVO = (join(OUTPUT_DIR, f'{generatedName}.jpeg'), 'jpeg')
 
-            for line in text_write_list[(MAX_LINES_FOR_IMAGE * i) : ((MAX_LINES_FOR_IMAGE * i) + MAX_LINES_FOR_IMAGE)]:
-                final_text += line + "\n"
+            final_text = "\n".join(text_write_list[(MAX_LINES_FOR_IMAGE * i) : ((MAX_LINES_FOR_IMAGE * i) + MAX_LINES_FOR_IMAGE)])
+
+            # for line in text_write_list[(MAX_LINES_FOR_IMAGE * i) : ((MAX_LINES_FOR_IMAGE * i) + MAX_LINES_FOR_IMAGE)]:
+                # final_text += line + "\n"
             
             itd.drawTextOnImage(pillow_img, final_text)
             itd.drawNumberOfImage(pillow_img, generatedName)
             pillow_img.save(*NOME_ARQUIVO, keep=100)
-            log.info(f"Imagem {generatedName} gerada.")
             
-            # pillow_img.show()
+            log.info(f"Imagem {generatedName} gerada.")

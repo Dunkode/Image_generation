@@ -16,7 +16,7 @@ def brokeText(text, max_char):
 
     if len(text) > max_char:
         qtd_cuts = calculeLineBrokes(text, max_char)        
-        separeted_texts = getTexBrokenInLines(text, max_char, qtd_cuts).split("\n")      
+        separeted_texts = getTexBrokenInLines(text, max_char, qtd_cuts)#.split("\n")      
         return separeted_texts
 
     else:
@@ -44,6 +44,8 @@ def getTexBrokenInLines(text, max_char, qtd_cuts):
     Aqui, recebemos o texto a ser cortado, a quantidade
     máxima de caracteres por linha e quantas linhas esse
     texto pode ser quebrado.
+    '''
+
     '''
     final_string = ''
     qtd_char_rem = 0
@@ -83,5 +85,47 @@ def getTexBrokenInLines(text, max_char, qtd_cuts):
 
                     final_string += str_aux
                     break
+    '''
                 
-    return final_string
+    finalStrings = list()
+
+    qtdCharInseridos = 0
+    qtdCharTotal = len(text.strip('\n'))
+
+    for i in range(0, (qtd_cuts + 1)):
+        if qtdCharInseridos < qtdCharTotal:
+            txtAnalisado = text[qtdCharInseridos: qtdCharInseridos + max_char]
+
+            if txtAnalisado != '':
+                while True:
+                    if '\n' in txtAnalisado:
+                        txtCortado = txtAnalisado.split('\n')
+                        qtdTxts = len(txtCortado)
+                        
+                        if qtdTxts > 2:
+                            indUltimo = len(txtCortado)-1
+
+                            for i in range(0, indUltimo):
+                                finalStrings.append(txtCortado[i])
+                                qtdCharInseridos += len(txtCortado[i])+1
+                            
+                            # txtAnalisado = txtCortado[indUltimo]
+                            break
+                        else:
+                            qtdCharInseridos += len(txtCortado[0])+1
+                            finalStrings.append(txtCortado[0])
+                            # txtAnalisado = txtCortado[1]
+                            break
+                    else:
+                        if txtAnalisado[0] == " ":
+                            txtAnalisado = txtAnalisado[1:]
+                            qtdCharInseridos += 1
+
+                        if txtAnalisado[-1] in (' ', '.', ',', '!', '?', "\'", "\""):
+                            qtdCharInseridos += len(txtAnalisado)
+                            finalStrings.append(txtAnalisado)
+                            break
+                        else:
+                            txtAnalisado = txtAnalisado[: len(txtAnalisado)-1]
+
+    return finalStrings
