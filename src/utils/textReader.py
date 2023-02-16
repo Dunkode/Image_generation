@@ -3,6 +3,7 @@ from os.path import join
 from os import rename
 import src.utils.fileManagement as fm
 import src.utils.logUtil as log
+from src.utils.numberPostControler import readActualNumber
 
 INPUT_DIR = fm.PATH_INPUT
 
@@ -28,4 +29,4 @@ def readTextsFromFile():
     return text
 
 def renameUsedFile(file):
-    rename(file, file + "_used")
+    rename(file, file + "_used_{}".format(readActualNumber()))

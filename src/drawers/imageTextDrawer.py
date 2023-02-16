@@ -4,7 +4,7 @@ from os.path import join, exists
 from PIL import Image, ImageFont, ImageDraw, ImageColor
 from src.utils import textProcessor as tp
 from src.drawers import imageTextDrawer as itd
-from src.utils.numberPostControler import attNumberFromFile, generateNameOfFile
+from src.utils.numberPostControler import readActualNumber, generateNameOfFile, attNumberFile
 from src.utils.fileManagement import PATH_OUTPUT, PATH_FONT
 import src.utils.logUtil as log
 
@@ -96,7 +96,7 @@ def montTextOnImages(TAMANHO, text):
     if not exists(FONT_DIR):
         raise Exception("A fonte a ser usada não foi localizada no diretório.")
     
-    NUMERO_POST = attNumberFromFile()
+    NUMERO_POST = readActualNumber()
     NOME_ARQUIVO = (join(OUTPUT_DIR, f'{NUMERO_POST}.jpeg'), 'jpeg')
     text_write_list = tp.brokeText(text, QTD_MAX_CHAR)
     qtd_lines = len(text_write_list)
@@ -118,8 +118,6 @@ def montTextOnImages(TAMANHO, text):
     #Se tem mais de uma e menos que o máximo de linhas por imagem
     elif qtd_lines > 1 and qtd_lines <= MAX_LINES_FOR_IMAGE:
         final_text = "\n".join(text_write_list)
-        # for line in text_write_list:
-        #     final_text += line + "\n"
             
         pillow_img = Image.new('RGB', TAMANHO, color=IMAGE_BACKGROUND_COLOR)
 
@@ -142,9 +140,6 @@ def montTextOnImages(TAMANHO, text):
 
             final_text = "\n".join(text_write_list[(MAX_LINES_FOR_IMAGE * i) : ((MAX_LINES_FOR_IMAGE * i) + MAX_LINES_FOR_IMAGE)])
 
-            # for line in text_write_list[(MAX_LINES_FOR_IMAGE * i) : ((MAX_LINES_FOR_IMAGE * i) + MAX_LINES_FOR_IMAGE)]:
-                # final_text += line + "\n"
-            
             itd.drawTextOnImage(pillow_img, final_text)
             itd.drawNumberOfImage(pillow_img, generatedName)
             pillow_img.save(*NOME_ARQUIVO, keep=100)

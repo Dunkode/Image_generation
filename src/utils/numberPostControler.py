@@ -9,15 +9,13 @@ DIR = fm.PATH_DATA
 #Arquivo que conterá o número da postagem a ser escrita na imagem
 FILE = join(fm.PATH_DATA, "num_post.txt")
 
-def attNumberFromFile():
+def readActualNumber():
     '''
     Função capaz de ler o número do arquivo num_post.txt
-    e atualizá-lo em mais um.
     '''
+
     file_number = fm.verifyFile(DIR, FILE, 0)
-    oldNumber = int(fm.readContentFromFile(file_number))
-    fm.writeDataInFile(file_number, oldNumber + 1)
-    return oldNumber
+    return int(fm.readContentFromFile(file_number))
 
 def generateNameOfFile(NUMBER, index):
     '''
@@ -30,5 +28,11 @@ def generateNameOfFile(NUMBER, index):
     NUMBER = número da postagem;
     index = a posição da imagem gerada.
     '''
+
     alfabeto = list(string.ascii_uppercase)
     return f"{NUMBER} - {alfabeto[index]}"
+
+def attNumberFile():
+    file_number = fm.verifyFile(DIR, FILE, 0)
+    oldNumber = int(fm.readContentFromFile(file_number))
+    fm.writeDataInFile(file_number, oldNumber + 1)

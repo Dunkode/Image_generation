@@ -1,5 +1,6 @@
 from src.drawers.imageTextDrawer import montTextOnImages
 from src.utils.textReader import readTextsFromFile, renameUsedFile
+from src.utils.numberPostControler import attNumberFile
 from src.utils.fileManagement import verifySystemPaths
 import src.utils.logUtil as log
 
@@ -12,5 +13,6 @@ if texts:
         try:
             montTextOnImages(TAMANHO, text['text'])
             renameUsedFile(text['file'])
+            attNumberFile()
         except Exception as error:
             log.erro(error.args)
