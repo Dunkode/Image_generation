@@ -22,7 +22,7 @@ O algoritmo foi pensado para que cada arquivo de texto gerassem uma postagem, qu
  4. Após isso, basta rodar o arquivo `main.py` novamente, que os resultados ficarão disponíveis no diretório `outputs/`!
 
 ## Especificações
- - Para rodar o código, é necessário ter instalado préviamente a biblioteca [Pillow](https://pillow.readthedocs.io/en/latest/installation.html);
+ - Para rodar o código, é necessário instalar as dependências obrigatórias com o comando "pip -r requirements.txt"
  - A imagem tem um tamanho fixo de **1080X1080**;
  - A fonte usada nas imagens pode ser alterada, colocando a fonte desejada no diretório `fonts/`. Após isso, você deve alterar a variável `FONT_DIR` no arquivo `drawers/imageTextDrawer.py`, colocando o nome do arquivo da fonte que você inseriu anteriormente nela;
  - **Obs:** O algorítmo foi projetado pensando no uso da fonte que já existe hoje, então outras fontes podem não funcionar como esperado;
